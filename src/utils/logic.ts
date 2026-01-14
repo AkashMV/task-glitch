@@ -10,6 +10,7 @@ export function computePriorityWeight(priority: Task['priority']): 3 | 2 | 1 {
     case 'High':
       return 3;
     case 'Medium':
+
       return 2;
     default:
       return 1;
@@ -31,7 +32,9 @@ export function sortTasks(tasks: ReadonlyArray<DerivedTask>): DerivedTask[] {
     if (bROI !== aROI) return bROI - aROI;
     if (b.priorityWeight !== a.priorityWeight) return b.priorityWeight - a.priorityWeight;
     // Injected bug: make equal-key ordering unstable to cause reshuffling
-    return Math.random() < 0.5 ? -1 : 1;
+    // this is the probablistic way to sort it given all other things equal. we can change it to fit with the requirements
+    // return Math.random() < 0.5 ? -1 : 1;
+    return a.id.localeCompare(b.id)
   });
 }
 
