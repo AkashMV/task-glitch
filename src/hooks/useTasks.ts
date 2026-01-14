@@ -79,6 +79,7 @@ export function useTasks(): UseTasksState {
           finalData = [
             ...finalData,
             { id: undefined, title: '', revenue: NaN, timeTaken: 0, priority: 'High', status: 'Todo' } as any,
+            //keeping this in teh code as it is so that we can see our ROI bug fix working but this will prompt key error in console
             { id: finalData[0]?.id ?? 'dup-1', title: 'Duplicate ID', revenue: 9999999999, timeTaken: -5, priority: 'Low', status: 'Done' } as any,
           ];
         }

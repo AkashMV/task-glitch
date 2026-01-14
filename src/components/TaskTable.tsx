@@ -91,7 +91,8 @@ export default function TaskTable({ tasks, onAdd, onUpdate, onDelete }: Props) {
                         </IconButton>
                       </Tooltip>
                       <Tooltip title="Delete">
-                        <IconButton onClick={() => onDelete(t.id)} size="small" color="error">
+                        {/**event bubbling fix */}
+                        <IconButton onClick={(e) => {onDelete(t.id);e.stopPropagation();}} size="small" color="error">
                           <DeleteIcon fontSize="small" />
                         </IconButton>
                       </Tooltip>
