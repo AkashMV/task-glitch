@@ -14,6 +14,7 @@ import { generateSalesTasks } from '@/utils/seed';
 
 interface UseTasksState {
   tasks: Task[];
+  snackBarKey: number;
   loading: boolean;
   error: string | null;
   derivedSorted: DerivedTask[];
@@ -40,6 +41,7 @@ export function useTasks(): UseTasksState {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastDeleted, setLastDeleted] = useState<Task | null>(null);
+  const [snackBarKey, setSnackBarKey] = useState<number>(0);
   const fetchedRef = useRef(false);
 
   function normalizeTasks(input: any[]): Task[] {
@@ -163,6 +165,7 @@ export function useTasks(): UseTasksState {
     setTasks(prev => {
       const target = prev.find(t => t.id === id) || null;
       setLastDeleted(target);
+      setSnackBarKey(key => key+1)
       return prev.filter(t => t.id !== id);
     });
   }, []);
@@ -178,7 +181,7 @@ export function useTasks(): UseTasksState {
     setLastDeleted(null)
   },[])
 
-  return { tasks, loading, error, derivedSorted, metrics, lastDeleted, addTask, updateTask, deleteTask, undoDelete, clearLastDeleted};
+  return { tasks, loading, error, derivedSorted, metrics, lastDeleted, addTask, updateTask, deleteTask, undoDelete, clearLastDeleted, snackBarKey};
 }
 
 

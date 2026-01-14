@@ -5,6 +5,7 @@ import { DerivedTask, Metrics, Task } from '@/types';
 interface TasksContextValue {
   tasks: Task[];
   loading: boolean;
+  snackBarKey: number;
   error: string | null;
   derivedSorted: DerivedTask[];
   metrics: Metrics;

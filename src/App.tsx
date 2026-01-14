@@ -19,7 +19,7 @@ import {
 } from '@/utils/logic';
 
 function AppContent() {
-  const { loading, error, metrics, derivedSorted, addTask, updateTask, deleteTask, undoDelete, lastDeleted, clearLastDeleted } = useTasksContext();
+  const { snackBarKey,loading, error, metrics, derivedSorted, addTask, updateTask, deleteTask, undoDelete, lastDeleted, clearLastDeleted } = useTasksContext();
   //we set the last deleted back to null so that our snackbar works perfectly
   const handleCloseUndo = () => {
     clearLastDeleted()
@@ -129,7 +129,8 @@ function AppContent() {
           {!loading && !error && <ChartsDashboard tasks={filtered} />}
           {!loading && !error && <AnalyticsDashboard tasks={filtered} />}
           {!loading && !error && <ActivityLog items={activity} />}
-          <UndoSnackbar open={!!lastDeleted} onClose={handleCloseUndo} onUndo={handleUndo} />
+          {/*added a key so that we have +4 increment everytime we delete a task */}
+          <UndoSnackbar key={snackBarKey} open={!!lastDeleted} onClose={handleCloseUndo} onUndo={handleUndo} />
          </Stack>
       </Container>
     </Box>
