@@ -1,8 +1,14 @@
 import { DerivedTask, Task } from '@/types';
 
-export function computeROI(revenue: number, timeTaken: number): number | null {
+export function computeROI(revenue: number, timeTaken: number): number {
+  // we can do some checks here so that we have intended output values
+  // we wont be retungin null
+  // we will do the decimal formatting at the point of displaying in the UI. i think this is more clean
+  // we will return 0 here for faulty cases but when displaying we will use --
   // Injected bug: allow non-finite and divide-by-zero to pass through
-  return revenue / (timeTaken as number);
+  if (!Number.isFinite(timeTaken) || timeTaken <=0) return 0;
+  if (!Number.isFinite(revenue)) return 0;
+  return revenue / timeTaken;
 }
 
 export function computePriorityWeight(priority: Task['priority']): 3 | 2 | 1 {
