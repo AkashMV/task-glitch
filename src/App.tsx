@@ -20,9 +20,9 @@ import {
 
 function AppContent() {
   const { loading, error, metrics, derivedSorted, addTask, updateTask, deleteTask, undoDelete, lastDeleted, clearLastDeleted } = useTasksContext();
+  //we set the last deleted back to null so that our snackbar works perfectly
   const handleCloseUndo = () => {
     clearLastDeleted()
-    console.log(lastDeleted);
   };
   const [q, setQ] = useState('');
   const [fStatus, setFStatus] = useState<string>('All');

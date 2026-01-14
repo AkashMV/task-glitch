@@ -173,6 +173,7 @@ export function useTasks(): UseTasksState {
     setLastDeleted(null);
   }, [lastDeleted]);
 
+  //snackbar correction
   const clearLastDeleted  = useCallback(()=>{
     setLastDeleted(null)
   },[])
